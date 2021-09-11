@@ -10,6 +10,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using webAppStrategy.Context;
+using webAppStrategy.Interfaces;
+using webAppStrategy.Repository;
+using webAppStrategy.Repository.IRepository;
+
 namespace webAppStrategy
 {
     public class Startup
@@ -25,6 +30,9 @@ namespace webAppStrategy
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IMoqDataShippingRepository, MoqDataShippingRepository>();
+            services.AddScoped<IMoqDataOrderRepository, MoqDataOrderRepository>();
+            services.AddScoped<IShippingContext, ShippingContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
